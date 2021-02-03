@@ -6,6 +6,7 @@ const app = express();
 
 // middleware
 app.use(express.static('public'));
+app.use(express.json());
 
 // database connection
 const dbURI = 'mongodb://localhost:27017/gym-db';
