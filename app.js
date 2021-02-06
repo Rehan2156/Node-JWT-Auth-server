@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/authRoutes');
 const cookieParser = require('cookie-parser');
+const {requireAuth,checkUser} = require('./middleware/authMiddleware')
 
 const app = express();
 
@@ -9,6 +10,7 @@ const app = express();
 app.use(express.static('public'));
 app.use(express.json());
 app.use(cookieParser());
+require('dotenv').config()
 
 // database connection
 const dbURI = 'mongodb://localhost:27017/gym-db';
@@ -17,6 +19,7 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
   .catch((err) => console.log(err));
 
 // routes
+app.get('*',checkUser)
 app.get('/', (req, res) => res.send('home'));
-app.get('/items', (req, res) => res.send('items'));
+app.get('/items', requireAuth, (req, res) => res.send('items'));
 app.use(authRoutes);
