@@ -8,6 +8,14 @@ A Nodejs API that implements JSON Web Token Authentication.
 4) Logging out users automatically if suspicious activity detected by checking cookies.
 5) Session period of 24 hrs. You won't have to login even if you close the browser. However, the user has to login again after the session period expires.
 
+# npm packages used:
+    "bcrypt": "^5.0.0",
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.11.14",
+    "validator": "^13.5.2"
+    
 # HTTP Requests:
 <b>post /login</b>
 <pre>
